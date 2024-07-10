@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!-- saved from url=(0372)https://fledge.us.criteo.com/interest-group?data=dHmzI3wxL3ZBQmZ3dnl5UDljOHRFV1R4dUtVRVpZSjZhYVZvU0NGUDV1TDZNb013TS9WQmlaZys4K1JCOHJWd0taSjNyVG04TlVMN3FUQ3paRWphYTdoT3VTdkVSblFjd3E4WDI5LzRiem1HNFJONEs2bUZWYlZ5bXN4YXBCM1V2OThwNXhQU1hLRkRQVEUxTnBIS1h1ZU9WVDUxVS9sVjhiSjUrbjFiL29Ld3cxUlBkdys0STJvdEh4MUdabmE5bjlIaXRxYmNyeW5TOERNMVBEdm5SZmR0anN1S216Zk5IVjdGQ3ppZlFDRjh6ZVljPXw -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <!-- Chrome origin trial token -->
+    <meta http-equiv="origin-trial" content="AnolOEEMEnMaCvmUcw/eijaA/Ntx4pke43TW8O1+XFxTL7yMSzmBnkPrjQ33sKmqvREEpLQOE72gUMzHLu9KiAoAAABseyJvcmlnaW4iOiJodHRwczovL2NyaXRlby5jb206NDQzIiwiZmVhdHVyZSI6IlByaXZhY3lTYW5kYm94QWRzQVBJcyIsImV4cGlyeSI6MTY5NTE2Nzk5OSwiaXNTdWJkb21haW4iOnRydWV9">
+</head>
+<body>
+
+<script>
+    function getBswIg(src) {
+        const elt = document.createElement("iframe");
+        elt.allow = "join-ad-interest-group";
+        elt.width = "0";
+        elt.height = "0";
+        elt.style.display = "none";
+        elt.title = "BSW IG";
+        elt.src = src;
+
+        document.body.appendChild(elt);
+    }
+
+    if (!navigator.joinAdInterestGroup) {
+        console.log("No fledge for you!");
+    } else {
+        var igs = [{"owner":"https://fledge.us.criteo.com","name":"W16Pcnw2MFJRaUFaZDNwVC84SUR5dElxaitnPT18","lifetimeMs":2592000000,"priorityVector":{"browserSignals.ageInMinutes":-1,"browserSignals.one":-86400},"biddingLogicURL":"https://fledge.us.criteo.com/simplebid?platform=us","biddingWasmHelperURL":"https://fledge.us.criteo.com/criteo.wasm","trustedBiddingSignalsURL":"https://fledge.us.criteo.com/getvalues","trustedBiddingSignalsKeys":["W1_PwXwxL3ZBQmZ3dnl5UDljOHRFV1R4dUtmbDFKWm9zSkhuSE05Zksyd1lSWGxqRGd1Vlg1OU10SlFRTzdXN1pGSUszdElsWlkyai9NemFEVmpIbFIrUVd3djlTSmh4aDhUQWVaaDhmQXM5eEJLZWhoLzVNSFhRd1djUS9Kb3k5ODVka2dSZmFrUGMvZUhNeVN0dFhTOThucFhUQXpqSWYvYitSb1dFQTFqVXJkUGxaZGR4SWtnclcrdVNpYlRBeURjdWh8"],"maxTrustedBiddingSignalsURLLength":32768,"userBiddingSignals":{},"updateURL":"https://fledge.us.criteo.com/interest-group/update?key=SvBdXnwxL3ZBQmZ3dnl5UDljOHRFV1R4dUtaMEdKSWVkRVVJT0FhazFnSFYwQi9VQS9wNzFmV0VsdW9oS2liakVGRHZ6a3o3YTR3UlVGRCszRUlVendRSE1Idm52RkcxWjY3dWttWThGYlpvejZWYlk1T2VpdEpFaklYM0RjUllxZTltZSt1bGxhTjNIc2ROZDBYbWdQVkFpMHJpeDZRV3p5QnZSUFlmOGkvQmJnOGQvckJFSEd2d2VNaDBmVXJQWm41dHZ8","ads":[],"adComponents":[],"trustedBiddingSignalsSlotSizeMode":"slot-size","executionMode":"group-by-origin"}];
+        var expiration = 2592000;
+        var errorEndpoint = "https://fledge.us.criteo.com/interest-group/error?pid=36026";
+        if (navigator.joinAdInterestGroup.length == 1) {
+            for (const ig of igs) {
+                navigator.joinAdInterestGroup(ig).catch((e) => fetch(`${errorEndpoint}&message=${encodeError(e)}`));
+            }
+        } else {
+            // This is for backwards-compatibility
+            // The 1 - arg implementation is future - proof
+            for (const ig of igs) {
+                navigator.joinAdInterestGroup(ig, expiration).catch((e) => fetch(`${errorEndpoint}&message=${encodeError(e)}`));
+            }
+        }
+        if (false) {
+            getBswIg("https://dsp-paapi-sandbox.bsw-ig.criteo.com/paapi/dsp/html/index");
+            getBswIg("https://paa-proxy-dsp.bsw-sb.criteo.com/paapi/paa-proxy/dsp/html/index/bsw-sb-ig-paa-proxy");
+        }
+    }
+
+    function encodeError(error) {
+        return encodeURIComponent(error.name + ':' + error.message);
+    }
+
+    async function measureAudienceSize() {
+        // Measuring audience size
+        // Register worklet
+        if((!window?.sharedStorage?.worklet?.addModule) || (!window?.sharedStorage?.run)){
+            return;
+        }
+        await window.sharedStorage.worklet.addModule('');
+
+        // Run audience size measurement operation
+        await window.sharedStorage.run('audience-size-measurement', {
+            data: { bucketKey: BigInt('1152836'), contributionValue: 8192}
+        });
+    }
+
+    //TODO reactivate audience-size-measurement
+    //measureAudienceSize();
+
+</script>
+
+
+</body></html>
